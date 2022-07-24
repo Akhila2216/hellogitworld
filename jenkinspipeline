@@ -1,0 +1,23 @@
+pipeline { 
+     agent any 
+      environment {
+        PATH = "/opt/maven/bin:$PATH"
+    }
+    stages {
+        stage ('clone') {
+           steps {
+               git credentialsId: 'akhila-github', url: 'https://github.com/Akhila2216/hellogitworld.git' 
+        
+           } 
+        
+        }
+    
+    
+        stage('build'){
+           steps {
+              sh'mvn clean compile install'
+           }
+       }
+    }
+  
+}
